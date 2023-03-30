@@ -1,9 +1,7 @@
-### Changelog
+### Makes WP Headless and awesome
 
-#### 0.2
-
-- Added options repeater field "Modules Post Types" that is populated with all post types. Any post types selected here will also have the "Modules" flexible content field added to it.
-
-#### 0.3
-
-- Removed "include_once('wp/clean-up.php');" to prevent hiding of the "Preview Changes" button
+#### Features
+- Headless Preview
+- Decapitate WP
+- Flexible Content automagically cloning field groups
+- Add additional menu locations

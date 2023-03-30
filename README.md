@@ -1,4 +1,4 @@
-### Makes WP Headless and awesome
+### Make Headless WP Awesome
 
 #### Features
 - Headless Preview

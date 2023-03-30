@@ -11,16 +11,16 @@ if (function_exists('acf_add_options_page')) :
     'redirect'    => false
   ));
 
-// acf_add_options_page(array(
-//   'page_title'   => 'Theme Options',
-//   'menu_title'  => 'Theme Options',
-//   'menu_slug'   => 'theme-options',
-//   'capability'  => 'edit_posts',
-//   'icon_url' => 'dashicons-editor-code',
-//   'position' => 2,
-//   'redirect'    => false,
-//   'show_in_graphql' => true
-// ));
+  acf_add_options_page(array(
+    'page_title'   => 'Theme Options',
+    'menu_title'  => 'Theme Options',
+    'menu_slug'   => 'theme-options',
+    'capability'  => 'edit_posts',
+    'icon_url' => 'dashicons-admin-customizer',
+    'position' => 2,
+    'redirect'    => false,
+    'show_in_graphql' => true
+  ));
 
 endif;
 

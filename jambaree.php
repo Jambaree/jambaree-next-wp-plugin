@@ -3,7 +3,7 @@
 * Plugin Name: Jambaree
 * Plugin URI: https://github.com/Jambaree/jambaree-next-wp-plugin
 * Description: Everything you need for a headless Wordpress sites in one place
-* Version: 0.2
+* Version: 1.0.0
 * Author: Jambaree
 * Author URI: https://jambaree.com/
 */

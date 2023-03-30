@@ -1,22 +1,17 @@
 <?php
 /*
-* Plugin Name: Bare
-* Plugin URI: https://github.com/Jambaree/bare-wp-plugin
+* Plugin Name: Jambaree
+* Plugin URI: https://github.com/Jambaree/jambaree-next-wp-plugin
 * Description: Everything you need for a headless Wordpress sites in one place
 * Version: 0.2
-* Author: Robin Zimmer / Caleb Barnes
-* Author URI:
+* Author: Jambaree
+* Author URI: https://jambaree.com/
 */
-
-define('BARE_URL', plugin_dir_url(__FILE__));
-define('BARE_PATH', plugin_dir_path(__FILE__));
 
 add_action('plugins_loaded', 'ACFOptionsPage');
 
 function ACFOptionsPage()
 {
-
-
   if (class_exists('acf')) {
 
     include_once('acf/options-page.php');
@@ -25,20 +20,12 @@ function ACFOptionsPage()
       include_once('acf/flexible-content.php');
     endif;
 
-    if (get_field('bare_admin_theme', 'options')) :
-      include_once('menu/bare-theme.php');
-    endif;
-
     if (get_field('decapitate_wp', 'options')) :
       include_once('wp/decapitate-wp.php');
     endif;
 
     if (have_rows('menu_locations', 'options')) :
       include_once('wp/add-menu-locations.php');
-    endif;
-
-    if (get_field('gravity_forms_file_upload_fix', 'options')) :
-      include_once('gravityforms/file-upload.php');
     endif;
   }
 }
@@ -57,4 +44,20 @@ function acf_populate_post_type_choices($field)
     $field['choices'][$post_type->name] = $post_type->label . " (" . $post_type->name . ")";
   }
   return $field;
+}
+
+require_once(plugin_dir_path(__FILE__) . 'includes/console_log.php');
+
+/* Template Include */
+add_filter('template_include', 'next_preview_template_include', 1, 1);
+function next_preview_template_include($template)
+{
+  $is_preview  = is_preview();
+  console_log($is_preview);
+
+  if ($is_preview) {
+    return plugin_dir_path(__FILE__) . 'includes/preview-template.php'; //Load your template or file
+  }
+
+  return $template;
 }

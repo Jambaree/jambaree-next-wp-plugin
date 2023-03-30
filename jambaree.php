@@ -52,12 +52,17 @@ require_once(plugin_dir_path(__FILE__) . 'includes/console_log.php');
 add_filter('template_include', 'next_preview_template_include', 1, 1);
 function next_preview_template_include($template)
 {
-  $is_preview  = is_preview();
-  console_log($is_preview);
+  if (get_field('headless_preview', 'option')) {
 
-  if ($is_preview) {
-    return plugin_dir_path(__FILE__) . 'includes/preview-template.php'; //Load your template or file
+    $is_preview  = is_preview();
+    console_log($is_preview);
+
+    if ($is_preview) {
+      return plugin_dir_path(__FILE__) . 'includes/preview-template.php'; //Load your template or file
+    }
+
+    return $template;
+  } else {
+    return $template;
   }
-
-  return $template;
 }

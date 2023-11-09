@@ -192,6 +192,7 @@ if (function_exists('acf_add_local_field_group')) :
         'active' => 1,
         'description' => '',
         'show_in_graphql'                       => true,
+        'show_in_rest'                          => true,
         'graphql_field_name'                    => 'acf',
         'map_graphql_types_from_location_rules' => true,
         'graphql_types'                         => ['DefaultTemplate']

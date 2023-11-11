@@ -23,24 +23,7 @@ if (isset($revision)) {
 
 console_log(['revision_id' => $revision_id]);
 
-
-if (function_exists('graphql')) {
-    $graphql = graphql([
-        'query' => "{
-                                viewer {
-                                    jwtAuthToken
-                                }
-                            }"
-    ]);
-
-    $jwtAuthToken;
-
-
-    if (isset($graphql)) {
-        $jwtAuthToken = $graphql['data']['viewer']['jwtAuthToken'];
-    }
-}
-
+$previewSecret = get_field('preview_secret', 'option');
 
 
 ?>
@@ -69,7 +52,7 @@ if (function_exists('graphql')) {
 
     <?php if ($frontend_url) : ?>
         <iframe id='preview' src="<?= $frontend_url_trailing_slash;
-                                    ?>preview?key=<?= $jwtAuthToken; ?>&slug=<?= $slug ?>&revision_id=<?= $revision_id ?>&no-cache=1" frameborder="0"></iframe>
+                                    ?>api/draft/preview?secret=<?= $previewSecret; ?>&uri=<?= $slug ?>&toolbar=false" frameborder="0"></iframe>
     <?php endif; ?>
 </body>
 

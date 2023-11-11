@@ -50,6 +50,25 @@ if (function_exists('acf_add_local_field_group')) :
       ),
 
       array(
+        'key' => 'field_63dac3a7bal85',
+        'label' => 'Preview Secret',
+        'name' => 'preview_secret',
+        'aria-label' => '',
+        'type' => 'text',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'default_value' => 'my-preview-secret',
+        'placeholder' => '',
+        'instructions' => 'The secret used for entering preview mode. This should match the env NEXT_PREVIEW_SECRET in your Next.js App.',
+      ),
+
+      array(
         'key' => 'headless_preview',
         'label' => 'Headless Preview',
         'instructions' => 'Enable preview mode for headless WordPress',

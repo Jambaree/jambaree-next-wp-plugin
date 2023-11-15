@@ -3,7 +3,7 @@
 * Plugin Name: Jambaree
 * Plugin URI: https://github.com/Jambaree/jambaree-next-wp-plugin
 * Description: Everything you need for a headless Wordpress sites in one place
-* Version: 2.0.0
+* Version: 2.1.0
 * Author: Jambaree
 * Author URI: https://jambaree.com/
 */
@@ -65,4 +65,31 @@ function next_preview_template_include($template)
   } else {
     return $template;
   }
+}
+
+
+add_action('rest_api_init', function () {
+  register_rest_route('jambaree/v1', '/options/(?P<slug>[a-zA-Z0-9-]+)', array(
+      'methods' => 'GET',
+      'callback' => 'jambaree_get_acf_options_page',
+      'permission_callback' => function (WP_REST_Request $request) {
+          return current_user_can('administrator');
+      }
+  ));
+});
+
+function jambaree_get_acf_options_page($request) {
+  $options_pages = acf_get_options_pages();
+  $slug = $request['slug'];
+
+  $options_page = $options_pages[$slug];
+  
+  if (!$options_page) {
+    return new WP_Error('not_found', 'Options page not found', array('status' => 404));
+  }
+  
+  // Fetch the fields for the found options page
+  $fields = get_fields($options_page["post_id"]);
+
+  return $fields ?: new WP_Error('no_fields', 'No fields found for this options page', array('status' => 404));
 }

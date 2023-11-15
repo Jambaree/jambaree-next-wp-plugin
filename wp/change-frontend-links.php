@@ -1,12 +1,10 @@
 <?php
 
-$frontend_url = get_field('frontend_url', 'options');
+$frontend_url = get_field('jambaree_frontend_url', 'options');
 
 if($frontend_url){
-
   function custom_frontend_url( $permalink, $post ) {
-
-    $frontend_url = get_field('frontend_url', 'options');
+    $frontend_url = get_field('jambaree_frontend_url', 'options');
 
     // remove trailing slash
     if(substr($frontend_url, -1) == '/') {
@@ -20,13 +18,5 @@ if($frontend_url){
         
   add_filter( 'page_link', 'custom_frontend_url', 10, 2 ); 
   add_filter( 'post_link', 'custom_frontend_url', 10, 2 );
-  add_filter( 'post_type_link', 'custom_frontend_url', 10, 2 );
-
-  // $post_types = get_post_types();
-
-  // foreach($post_types as $post_type){
-  //   
-  // }
-  // If you use custom post types also add this filter.
-  
+  add_filter( 'post_type_link', 'custom_frontend_url', 10, 2 ); 
 }

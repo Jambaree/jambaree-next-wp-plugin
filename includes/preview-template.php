@@ -1,30 +1,26 @@
 <?php wp_head();
 
 global $post;
-
-console_log(['post' => $post]);
-
 $post_id = $post->ID;
+$post_type_object = get_post_type_object($post->post_type);
+$rest_base = $post_type_object->rest_base;
 $url = get_permalink($post);
 $slug = str_replace(home_url(), "", $url);
+$previewSecret = get_field('preview_secret', 'option');
+$params = [
+    'secret' => get_field('preview_secret', 'option'),
+    'toolbar' => 'false',
+    'rest_base' => $rest_base,
+];
 
-$revision = array_values(wp_get_post_revisions($post_id))[0] ?? null;
-
-console_log(['url' => $url]);
-console_log(['slug' => $slug]);
-console_log(['revision' => $revision]);
-
-$revision_id;
-
-if (isset($revision)) {
-    $revision_id = $revision->ID;
+$isDraft = str_starts_with($slug, "/?");
+if ($isDraft){
+    $params['id'] = $post_id;
+} else {
+    $params['uri'] = $slug;
 }
 
-
-console_log(['revision_id' => $revision_id]);
-
-$previewSecret = get_field('preview_secret', 'option');
-
+$query = http_build_query($params);
 
 ?>
 <html lang="en">
@@ -51,8 +47,11 @@ $previewSecret = get_field('preview_secret', 'option');
     <?php $frontend_url_no_trailing_slash = rtrim($frontend_url, '/'); ?>
 
     <?php if ($frontend_url) : ?>
+        <div style="padding:24px;background:red;position:relative;z-index:999;margin:100px;">
+            <?php echo $query; ?>
+        </div>
         <iframe id='preview' src="<?= $frontend_url_trailing_slash;
-                                    ?>api/draft/preview?secret=<?= $previewSecret; ?>&uri=<?= $slug ?>&toolbar=false" frameborder="0"></iframe>
+                                    ?>api/draft/preview?<?= $query; ?>" frameborder="0"></iframe>
     <?php endif; ?>
 </body>
 

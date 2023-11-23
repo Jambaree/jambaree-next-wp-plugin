@@ -47,9 +47,6 @@ $query = http_build_query($params);
     <?php $frontend_url_no_trailing_slash = rtrim($frontend_url, '/'); ?>
 
     <?php if ($frontend_url) : ?>
-        <div style="padding:24px;background:red;position:relative;z-index:999;margin:100px;">
-            <?php echo $query; ?>
-        </div>
         <iframe id='preview' src="<?= $frontend_url_trailing_slash;
                                     ?>api/draft/preview?<?= $query; ?>" frameborder="0"></iframe>
     <?php endif; ?>

@@ -1,6 +1,6 @@
 <?php
 /*
-* Plugin Name: Jambaree
+* Plugin Name: Jambaree Headless Wordpress - Next.js Utilities
 * Plugin URI: https://github.com/Jambaree/jambaree-next-wp-plugin
 * Description: Everything you need for a headless Wordpress sites in one place
 * Version: 2.3.0

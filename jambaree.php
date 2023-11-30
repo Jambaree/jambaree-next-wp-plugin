@@ -32,14 +32,6 @@ include_once('wp/rest-endpoint-options-page.php');
 include_once('wp/rest-menu-items-add-acf.php');
 include_once('wp/headless-preview.php');
 include_once('acf/populate-post-type-choices.php');
+include_once('wp/customizer-iframe-preview.php');
 
 require_once(plugin_dir_path(__FILE__) . 'includes/console_log.php');
-
-function my_customizer_enqueue_script() {
-  wp_enqueue_script( 'customizer-headless-preview', plugin_dir_url(__FILE__) . 'js/customizer-iframe.js', array( 'jquery', 'customize-preview' ), '', true );
-  $headless_site_url = get_field("jambaree_frontend_url", "option");
-  wp_localize_script( 'customizer-headless-preview', 'customizerData', array(
-      'headlessUrl' => $headless_site_url
-  ));
-}
-add_action( 'customize_controls_enqueue_scripts', 'my_customizer_enqueue_script' );

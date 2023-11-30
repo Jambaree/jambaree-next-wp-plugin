@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
   console.log("customizer-iframe.js loaded");
-  var newIframeSrc = "https://your-headless-site-url.com"; // Replace this with your headless site URL
+  var newIframeSrc = customizerData.headlessUrl; // Change this to your URL
 
   // Function to change the iframe URL
   function changeIframeURL() {

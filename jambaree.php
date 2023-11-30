@@ -35,14 +35,11 @@ include_once('acf/populate-post-type-choices.php');
 
 require_once(plugin_dir_path(__FILE__) . 'includes/console_log.php');
 
-// Hook into the request to check if we are in the customize preview with is_customize_preview()
-// then if we are in the customize preview, we modify the iframe to render the headless site
-// instead of the default preview iframe
-
-
-add_action( 'admin_enqueue_scripts', 'my_customizer_enqueue_script' );
-add_action( 'customize_controls_enqueue_scripts', 'my_customizer_enqueue_script' );
-
 function my_customizer_enqueue_script() {
-  wp_enqueue_script( 'customizer-headless-preview', plugin_dir_path(__FILE__) . 'js/customizer-iframe.js', array( 'jquery', 'customize-preview' ), '', true );
+  wp_enqueue_script( 'customizer-headless-preview', plugin_dir_url(__FILE__) . 'js/customizer-iframe.js', array( 'jquery', 'customize-preview' ), '', true );
+  $headless_site_url = get_field("jambaree_frontend_url", "option");
+  wp_localize_script( 'customizer-headless-preview', 'customizerData', array(
+      'headlessUrl' => $headless_site_url
+  ));
 }
+add_action( 'customize_controls_enqueue_scripts', 'my_customizer_enqueue_script' );

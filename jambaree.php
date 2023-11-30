@@ -44,5 +44,5 @@ add_action( 'admin_enqueue_scripts', 'my_customizer_enqueue_script' );
 add_action( 'customize_controls_enqueue_scripts', 'my_customizer_enqueue_script' );
 
 function my_customizer_enqueue_script() {
-  wp_enqueue_script( 'customizer-headless-preview', plugin_dir_path(__FILE__) . '/js/customizer-iframe.js', array( 'jquery', 'customize-preview' ), '', true );
+  wp_enqueue_script( 'customizer-headless-preview', plugin_dir_path(__FILE__) . 'js/customizer-iframe.js', array( 'jquery', 'customize-preview' ), '', true );
 }

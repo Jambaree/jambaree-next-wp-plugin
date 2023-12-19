@@ -176,6 +176,24 @@ if (function_exists('acf_add_local_field_group')) :
           ),
         ),
       ),
+      array(
+        'key' => 'jambaree_google_maps_api_key',
+        'label' => 'Google Maps API Key',
+        'name' => 'jambaree_google_maps_api_key',
+        'aria-label' => '',
+        'type' => 'text',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'default_value' => false,
+        'placeholder' => '',
+        'instructions' => 'The Google Maps API Key to use for the Google Maps field type in ACF. May also be used in the headless app.',
+      ),
     ),
     'location' => array(
       array(

@@ -9,3 +9,5 @@
 - Ability to add additional menu locations
 - adds REST endpoint for acf options pages (/jambaree/v1/options/${option page slug})
 - adds ACF data to menu items REST endpoint (/wp/v2/menu-items)
+
+It is recommended to use the Jambaree Headless WP Theme to install this plugin: https://github.com/Jambaree/jambaree-headless-wp-theme
